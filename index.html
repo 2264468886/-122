@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>AlphaFlow Crypto - AI Trading Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'app-bg': 'var(--bg-primary)',
+              'app-surface': 'var(--bg-secondary)',
+              'app-border': 'var(--border-color)',
+              'app-text': 'var(--text-primary)',
+              'app-text-muted': 'var(--text-secondary)',
+              'brand-up': 'var(--up-color)',
+              'brand-down': 'var(--down-color)',
+            },
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+              'scanline': 'scanline 2s linear infinite',
+            },
+            keyframes: {
+              scanline: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(1000%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f3f4f6;
+        --text-primary: #111827;
+        --text-secondary: #4b5563;
+        --border-color: #e5e7eb;
+        /* Global/Crypto Style: Green Up, Red Down */
+        --up-color: #089981;
+        --down-color: #f23645;
+        --header-bg: #f9fafb;
+      }
+
+      .dark {
+        --bg-primary: #0b0e14;
+        --bg-secondary: #131722;
+        --text-primary: #f3f4f6;
+        --text-secondary: #9ca3af;
+        --border-color: #1f2937;
+        --up-color: #089981;
+        --down-color: #f23645;
+        --header-bg: #030712;
+      }
+
+      body {
+        font-family: 'SF Mono', 'Roboto Mono', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background-color 0.3s, color 0.3s;
+        /* Disable text selection mainly for UI but enable where needed */
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Mobile Optimization */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      /* Global Selection Color Hardening */
+      ::selection {
+        background-color: rgba(37, 99, 235, 0.3); /* Blue-600 with opacity */
+        color: #fff;
+      }
+
+      /* Scrollbar Hardening - Thinner, darker for Terminal feel */
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b0e14; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2d3748; 
+        border-radius: 2px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4a5568; 
+      }
+      
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-section {
+        animation: fadeIn 0.4s ease-out forwards;
+      }
+      
+      .glass {
+        background: rgba(19, 23, 34, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      /* Font Size Standards */
+      .text-title { font-size: 16px; font-weight: 700; }
+      .text-body { font-size: 14px; }
+      .text-aux { font-size: 12px; }
+      
+      /* Input Hardening */
+      input, textarea, select {
+        user-select: text;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@xenova/transformers": "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2",
+    "recharts": "https://esm.sh/recharts@^2.12.0",
+    "echarts": "https://esm.sh/echarts@5.5.0",
+    "klinecharts": "https://esm.sh/klinecharts@9.8.4",
+    "react-markdown": "https://esm.sh/react-markdown@^9.0.1",
+    "react-dom": "https://esm.sh/react-dom@^19.2.4",
+    "buffer": "https://esm.sh/buffer@6.0.3",
+    "long": "https://esm.sh/long@5.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
+  </head>
+  <body class="antialiased overflow-hidden dark bg-[#0b0e14]">
+    <div id="root" class="h-full w-full"></div>
+  </body>
+</html>
